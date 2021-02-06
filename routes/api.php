@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiControllers\ReviewController;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,12 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::apiResource('/products', 'Api\ProductController');
+
+Route::prefix('products')->group(function () {
+
+    Route::apiResource('/{product}/reviews', 'Api\ReviewController');
 });
